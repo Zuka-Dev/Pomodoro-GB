@@ -17,7 +17,7 @@ let breakSecs = 0;
 let isPaused = false; // Not it will be used yet
 let isFocus = true;
 let customTime;
-const audioData = new Audio("ding.mp3");
+const audioData = new Audio("./assets/ding.mp3");
 const timerElement = document.querySelectorAll(".timer-number");
 
 // Start timer for focus period
@@ -67,6 +67,33 @@ function getSeconds(sec) {
 // Seconds
 function getMinutes(min) {
   return `${String(min).padStart(2, "0")}`;
+}
+
+//Pause time
+function pauseTime() {
+  isPaused = !isPaused;
+  if (isPaused) {
+    clearInterval(timer);
+    document.getElementById(
+      "pause"
+    ).innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+    <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+  </svg>`;
+  } else {
+    startTimer();
+    document.getElementById("pause").innerHTML = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  fill="currentColor"
+  class="bi bi-pause"
+  viewBox="0 0 16 16"
+>
+  <path
+    d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5"
+  />
+</svg>`;
+  }
 }
 
 // Reset time

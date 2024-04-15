@@ -1,14 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@300;400;500;700&display=swap");
 /*
   Download font locally
 */
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/Poppins/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/Poppins/Poppins-ExtraLight.ttf");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/Poppins/Poppins-Bold.ttf");
+}
 :root {
   /* --primary-color: #;
   --secondary-color: #;
   --accent-color: #; */
   --white: #fff;
   --font: "Poppins", sans-serif;
-  --font2: "Orbitron", sans-serif;
 }
 * {
   margin: 0;
@@ -16,16 +26,16 @@
   box-sizing: border-box;
 }
 .small {
-  font-weight: 300;
+  font-weight: lighter;
   font-size: 13px;
 }
 .large {
-  font-weight: 700;
+  font-weight: bold;
   font-size: 36px;
 }
 body {
   color: #fff;
-  background-image: url(./bg.jpeg);
+  background-image: url(./assets/bg.jpeg);
   background-size: cover;
   background-position: center;
   font-family: var(--font);
@@ -141,7 +151,7 @@ body {
   transition: all ease 0.5s;
   font-size: 18px;
 }
-.disabled{
+.disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
