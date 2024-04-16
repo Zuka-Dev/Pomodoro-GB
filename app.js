@@ -8,6 +8,7 @@
   5. Change color of Panel and other things(aesthetics)
   6. Pause the timer (Not implemented)
  */
+
 // Define variables
 let timer;
 let minutes = 25;
@@ -79,6 +80,9 @@ function pauseTime() {
     ).innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
     <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
   </svg>`;
+  document.getElementById(
+    "pause"
+  ).setAttribute("title") = "Resume time";
   } else {
     startTimer();
     document.getElementById("pause").innerHTML = `<svg
@@ -93,6 +97,9 @@ function pauseTime() {
     d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5"
   />
 </svg>`;
+    document.getElementById(
+      "pause"
+    ).setAttribute("title") = "Pause time";
   }
 }
 
@@ -109,8 +116,14 @@ function resetTimer() {
 
 // Start a custom timer
 function startCustomTimer(time) {
-  customTime = time;
+  if(time > 30 || time < 0) {
+    alert("Please enter a valid time");
+    closeDialogue();
+  }else{
+      customTime = time;
   resetTimer();
+  }
+
 }
 
 // Start break timer
@@ -163,3 +176,45 @@ function selectTime(e) {
 
 // Start the initial timer
 startTimer();
+
+
+/*
+Adding Task manger / Todo app
+That starts 
+
+1. Add todo to list
+2. Be able to edit todo
+3. Delete todo
+4. Start timer for todo(Only one at a time)
+*/
+//Get todo
+const todoList = document.getElementById("todo-list")
+const inputForm =  document.getElementById("input-cont")
+const todoInput = document.getElementById("todoInput")
+
+//Add todo
+inputForm.addEventListener("submit", addTodo)
+function addTodo(e) {
+  e.preventDefault();
+  const todo = todoInput.value
+  const tododiv = document.createElement("div");
+  tododiv.classList.add("todo")
+  tododiv.innerHTML=`<p class="todo-text">${todo}</p>
+  <div class="btn-div">
+    <button class="todo-control green" id="start">Start</button
+    ><button class="todo-control yellow" id="edit">Edit</button
+    ><button class="todo-control red" id="delete">Delete</button>
+  </div>`
+  todoList.appendChild(tododiv)
+  todoInput.value = ""
+}
+document.getElementById("start").addEventListener("click", function(e){
+  resetTimer()
+})
+document.getElementById("delete").addEventListener("click", function(e){
+document.getElementsByClassName("todo-text").style.textDecoration="line-through"
+})
+// document.getElementById("start").addEventListener("click", function(e){
+//   resetTimer()
+// })
+
